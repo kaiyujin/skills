@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:13
+    container_name: skills-db
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      TZ: Asia/Tokyo
+    hostname: postgres
+    user: postgres
+    ports:
+      - 35431:5432
+    volumes:
+      - ./docker/db/:/docker-entrypoint-initdb.d
