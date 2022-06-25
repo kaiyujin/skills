@@ -1,10 +1,10 @@
 package main
 
 import (
+	"api/interface/handler"
 	"github.com/labstack/echo/v4"
 	"github.com/rs/zerolog"
 	"github.com/rs/zerolog/log"
-	"net/http"
 	"time"
 )
 
@@ -14,13 +14,6 @@ func main() {
 	defer log.Info().Msg("Stop server")
 	// Router
 	e := echo.New()
-	e.GET("/", health)
+	e.GET("/", handler.Health)
 	log.Fatal().Err(e.Start(":80"))
-}
-
-func health(c echo.Context) error {
-	result := map[string]interface{}{
-		"status": "OK",
-	}
-	return c.JSON(http.StatusOK, result)
 }
